@@ -1,0 +1,6 @@
+# Eclipse stuff, should be for each developer, so, ignore
+.classpath
+.project
+.settings
+# maven target (we definitely do not want this one in git)
+target/
