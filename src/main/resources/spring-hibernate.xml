@@ -24,7 +24,6 @@
 		<property name="maxIdleTime" value="20"></property>
 	</bean>
 	
-
 	<!-- session工厂 -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -41,7 +40,7 @@
 		<!-- 注解方式配置 -->
 		<property name="packagesToScan">
 			<list>
-				<value>com.sql.model</value>
+				<value>com.liuxian.model</value>
 			</list>
 		</property>
 

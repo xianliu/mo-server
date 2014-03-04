@@ -7,11 +7,10 @@
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	">
+	
+	<bean id="gson" class="com.google.gson.Gson" >
+	</bean>
 
-	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:database.properties" />
-
-	<!-- 自动扫描dao和service包(自动注入) -->
-	<context:component-scan base-package="com.sql.action,com.sql.dao.impl,com.sql.service" />
-
+	<context:component-scan base-package="com.liuxian.util, com.liuxian.action,com.liuxian.dao.impl,com.liuxian.inject.service" />
 </beans>
