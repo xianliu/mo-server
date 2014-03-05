@@ -15,12 +15,12 @@ public class JsonP {
 	@Autowired
 	private Gson gson;
 	
-	public <T> void buildJsonp(T t, HttpServletResponse response) {
+	public <T> void buildJsonp(T t, String cb, HttpServletResponse response) {
 		response.setContentType("text/javascript");
 		Writer out;
 		try {
 			out = response.getWriter();
-			out.write("Ext.data.JsonP.callback1(");
+			out.write(cb + "(");
 			out.write(gson.toJson(t));
 			out.write(");");
 		} catch (IOException e) {

@@ -48,11 +48,25 @@
 	</bean>
 
 	<!-- 配置事务 -->
-	<bean name="txManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<tx:annotation-driven transaction-manager="txManager" />
-
-
+	<!-- <tx:annotation-driven transaction-manager="txManager" /> -->
+	
+	<aop:config>
+		<aop:pointcut id="allMethods" expression="execution(* com.liuxian.dao.*.*(..))"/>
+    	<aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods"/>
+	</aop:config>
+    <!--3, 配置哪些方法要加入事务 -->
+ 
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true" />
+            <tx:method name="count*" read-only="true" />
+            <tx:method name="is*" read-only="true" />
+            <tx:method name="has*" read-only="true" />
+            <!-- 所有方法都加入事务 -->
+            <tx:method name="*"  />
+        </tx:attributes>
+    </tx:advice>
 </beans>
