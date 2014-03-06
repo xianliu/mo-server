@@ -12,23 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.liuxian.dao.NewsDao;
+import com.liuxian.dao.ShopDao;
 import com.liuxian.model.News;
+import com.liuxian.model.Shop;
 import com.liuxian.util.JsonP;
 
 @Controller
-public class NewsService {
+public class ShopService {
 	@Autowired
 	private JsonP jsonP;
 
-	@Resource(name = "newsDao")
-	private NewsDao newsDao;
+	@Resource(name = "shopDao")
+	private ShopDao shopDao;
 
-	@RequestMapping(value = "/news/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/shop/all", method = RequestMethod.GET)
 	public void getMovie(
 			@RequestParam(required = false, value = "callback", defaultValue = "callback") String cb,
 			HttpServletResponse response) {
-		List<News> newsList = newsDao.findAll();
-		jsonP.buildJsonp(newsList, cb, response);
+		List<Shop> shopList = shopDao.findAll();
+		jsonP.buildJsonp(shopList, cb, response);
 	}
 
 }
