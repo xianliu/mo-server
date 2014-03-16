@@ -8,11 +8,18 @@
 	<constant name="struts.configuration.xml.reload" value="true" />
 	<!-- 字符集编码 -->
 	<constant name="struts.i18n.encoding" value="utf-8" />
+	
 	<package name="defaultPackage" namespace="/" extends="struts-default">
-		
-	<action name="userAction" class="userAction" method="reg">
-		<result name="success">/success.jsp</result>
-		<result name="error">/error.jsp</result>
-	</action>
+		<action name="userAction" class="userAction" method="reg">
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 	</package>
+	
+	<package name="shop" extends="struts-default">
+		<action name="shop" class="shopAction" >
+			<result name="shopList">/shopList.jsp</result>
+		</action>
+	</package>
+	
 </struts>

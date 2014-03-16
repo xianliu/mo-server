@@ -21,7 +21,7 @@ public class Shop {
 	private String location;
 	private String owner;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopId", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopId", fetch = FetchType.LAZY)
 	private List<Group> groups;
 
 	public int getId() {

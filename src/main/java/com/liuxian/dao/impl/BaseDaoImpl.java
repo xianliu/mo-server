@@ -79,4 +79,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession(); 
 	}
 
+	@Override
+	public T update(T t) {
+		getSession().update(t);
+		return t;
+	}
+
 }

@@ -1,0 +1,18 @@
+.dishDetail .jumbotron img {
+	float: left;
+	margin: 15px;
+}
+
+.dishDetail .jumbotron div {
+	margin-bottom: 20px;
+}
+
+.dishDetail .clear {
+	clear: both;
+}
+
+.dishDetail .description {
+	font-family: "Microsoft Yahei";
+	font-size: 16px;
+	margin: 15px;
+}
