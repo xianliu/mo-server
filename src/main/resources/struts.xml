@@ -22,4 +22,11 @@
 		</action>
 	</package>
 	
+	<package name="group" extends="struts-default">
+		<action name="group" class="groupAction" >
+			<result name="groupList">/groupList.jsp</result>
+		</action>
+	</package>
+	
+	
 </struts>
