@@ -25,8 +25,8 @@ public class DishServiceImpl
 		return dishDao.findAll();
 	}
 	
-	public List<Dish> list(int shopId) {
-		return dishDao.list(shopId);
+	public List<Dish> list(int groupId) {
+		return dishDao.list(groupId);
 	}
 	
 	public boolean remove(int id) {

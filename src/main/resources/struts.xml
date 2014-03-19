@@ -28,5 +28,10 @@
 		</action>
 	</package>
 	
+	<package name="dish" extends="struts-default">
+		<action name="dish" class="dishAction" >
+			<result name="dishList">/dishList.jsp</result>
+		</action>
+	</package>
 	
 </struts>

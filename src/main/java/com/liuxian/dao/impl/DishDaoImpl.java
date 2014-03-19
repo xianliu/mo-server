@@ -12,7 +12,7 @@ public class DishDaoImpl extends BaseDaoImpl<Dish> implements DishDao {
 
 	@Override
 	public List<Dish> list(int groupId) {
-		String hql = "from Dish d where d.groupId=:id";
+		String hql = "from Dish d where d.group_id=:id";
 		return getSession().createQuery(hql).setInteger("id", groupId).list();
 	}
 }

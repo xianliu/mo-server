@@ -39,7 +39,9 @@
 	    		<c:forEach items="${groupList}" varStatus="status" var="item" >
 	    			<tr>
 		    			<td>${status.index +1}</td>
-		    			<td>${item.name}</td>
+		    			<td>
+		    				<a href="dish!list.action?groupId=${item.id}">${item.name}</a>
+		    			</td>
 		    			<td>
 		    				<a class="group-edit" group-id="${item.id}" shop-id="${item.shopId}" ><span class="glyphicon glyphicon-edit"></span></a>
 		    				<a href="group!remove.action?id=${item.id}"><span class="glyphicon glyphicon-trash"></span></a>
