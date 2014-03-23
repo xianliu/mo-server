@@ -62,6 +62,7 @@
 		      </div>
 		      <form id="group-form" role="form" action="group!add.action" method="post">
 		      	  <input name="id" type="hidden" id="id" />
+		      	  <input name="" type="hidden" id="">
 			      <div class="modal-body">
 					  <div class="form-group">
 					    <label for="exampleInputEmail1">种类名称：</label>

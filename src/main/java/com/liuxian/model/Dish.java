@@ -2,6 +2,7 @@ package com.liuxian.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,12 +20,22 @@ public class Dish {
 	
 	private String name;
 	private String price;
-	private String group;
+	
+	@Column(name = "image_name")
+	private String imageName;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date update_time;
 	
 	private int group_id;
+	
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 
 	public int getId() {
 		return id;
@@ -48,14 +59,6 @@ public class Dish {
 
 	public void setPrice(String price) {
 		this.price = price;
-	}
-
-	public String getGroup() {
-		return group;
-	}
-
-	public void setGroup(String group) {
-		this.group = group;
 	}
 
 	public Date getUpdate_time() {

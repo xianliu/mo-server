@@ -3,6 +3,7 @@ package com.liuxian.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import com.google.gson.Gson;
 import com.liuxian.inject.service.DishServiceImpl;
 import com.liuxian.model.Dish;
+import com.liuxian.model.Group;
 import com.opensymphony.xwork2.ActionContext;
 
 @Controller("dishAction")
@@ -27,13 +29,42 @@ public class DishAction {
 	
 	private int groupId;
 	
+	private String name;
+	
+	private String imageName;
+	
+	private String price;
+	
 	private File uploadImage;
 
 	private String uploadImageContentType;
 	
 	private String 	uploadImageFileName;
 	
-	
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 	public String getUploadImageContentType() {
 		return uploadImageContentType;
 	}
@@ -77,10 +108,46 @@ public class DishAction {
 	@Autowired
 	private DishServiceImpl dishService;
 	
+	
+	public String add() {
+		Dish dish = new Dish();
+		dish.setGroup_id(groupId);
+		dish.setName(name);
+		dish.setPrice(price);
+		dish.setUpdate_time(new Date());
+		dish.setImageName(imageName);
+		dishService.add(dish);
+		return "refreshList";
+	}
+	
+	public String update() {
+		Dish dish = new Dish();
+		dish.setId(id);
+		dish.setGroup_id(groupId);
+		dish.setName(name);
+		dish.setPrice(price);
+		dish.setUpdate_time(new Date());
+		dish.setImageName(imageName);
+		dishService.update(dish);
+		return "refreshList";
+	}
+	
 	public String list() {
 		List<Dish> dishList = dishService.list(groupId);
 		ActionContext.getContext().put("dishList", dishList);
 		return "dishList";
+	}
+	
+	public String remove() {
+		Dish dish = dishService.get(id);
+		File image = new File(dish.getImageName());
+		
+		if(image.isFile() && image.exists()) {
+			image.delete();
+		}
+		
+		dishService.remove(id);
+		return "refreshList";
 	}
 	
 	public void uploadImage() throws IOException {
@@ -98,8 +165,9 @@ public class DishAction {
 			File saveFile = new File(new File(realPath), imageFileName);
 			if(!saveFile.getParentFile().exists()) {
 				saveFile.getParentFile().mkdirs();
-				FileUtils.copyFile(uploadImage, saveFile);
 			}
+			
+			FileUtils.copyFile(uploadImage, saveFile);
 		}
 		
 		Writer out;
@@ -107,6 +175,22 @@ public class DishAction {
 			out = response.getWriter();
 			out.write(gson.toJson(imageFileName));
 			System.out.println(gson.toJson(imageFileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void get() {
+		HttpServletResponse response = (HttpServletResponse) ActionContext
+				.getContext().get(
+						org.apache.struts2.StrutsStatics.HTTP_RESPONSE);
+		Dish dish = dishService.get(id);
+		response.setContentType("application/json; charset=utf-8");
+		Writer out;
+		try {
+			out = response.getWriter();
+			out.write(gson.toJson(dish));
+			System.out.println(gson.toJson(dish));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -30,7 +30,8 @@
 	
 	<package name="dish" extends="struts-default">
 		<action name="dish" class="dishAction" >
-			<result name="dishList">/dishList.jsp</result>
+			<result name="dishList" >/dishList.jsp</result>
+			<result name="refreshList" type="redirect">/dish!list.action?groupId=${groupId}</result>
 		</action>
 	</package>
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -35,13 +36,18 @@
 	    		<th>#</th>
 	    		<th>菜品名称</th>
 	    		<th>价格</th>
+	    		<th>操作</th>
 	    	</thead>
 	    	<tbody>
-	    		<c:forEach items="${shopList}" varStatus="status" var="item" >
+	    		<c:forEach items="${dishList}" varStatus="status" var="item" >
 		    		<tr>
 		    			<td>${status.index + 1}</td>
 		    			<td>${item.name}</td>
 		    			<td>${item.price}</td>
+		    			<td>
+		    				<a class="dish-edit" group-id="${item.group_id}" dish-id="${item.id}" ><span class="glyphicon glyphicon-edit"></span></a>
+		    				<a href="dish!remove.action?id=${item.id}"><span class="glyphicon glyphicon-trash"></span></a>
+		    			</td>
 		    		</tr>
 	    		</c:forEach>
 	    	</tbody>	
@@ -71,12 +77,18 @@
 		      </form>
 		      
 		      
-		      <form id="dish-form" role="form" action="group!add.action" method="post">
+		      <form id="dish-form" role="form" action="dish!add.action" method="post">
 		      	  <input name="id" type="hidden" id="id" />
+		      	  <input name="imageName" type="hidden" id="imageName" />
 			      <div class="modal-body">
 					  <div class="form-group">
 					    <label for="exampleInputEmail1">菜品名称：</label>
 					    <input name="name" type="text" class="form-control" id="name" >
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="exampleInputEmail1">菜品价格：</label>
+					    <input name="price" type="text" class="form-control" id="price" >
 					  </div>
 			      </div>
 			      <div class="modal-footer">
