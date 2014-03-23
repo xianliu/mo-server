@@ -35,4 +35,12 @@
 		</action>
 	</package>
 	
+	<package name="news" extends="struts-default">
+		<action name="news" class="newsAction" >
+			<result name="newsList" >/newsList.jsp</result>
+			<result name="refreshList" type="redirect">/news!list.action</result>
+		</action>
+	</package>
+	
+	
 </struts>
