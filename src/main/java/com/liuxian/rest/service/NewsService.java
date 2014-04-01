@@ -23,7 +23,7 @@ public class NewsService {
 	@Resource(name = "newsDao")
 	private NewsDao newsDao;
 
-	@RequestMapping(value = "/news/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/news.json", method = RequestMethod.GET)
 	public void getMovie(
 			@RequestParam(required = false, value = "callback", defaultValue = "callback") String cb,
 			HttpServletResponse response) {

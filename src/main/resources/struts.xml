@@ -42,5 +42,12 @@
 		</action>
 	</package>
 	
+	<package name="recipe" extends="struts-default">
+		<action name="recipe" class="recipeAction" >
+			<result name="recipeList" >/recipeList.jsp</result>
+			<result name="refreshList" type="redirect">/recipe!list.action</result>
+		</action>
+	</package>
+	
 	
 </struts>

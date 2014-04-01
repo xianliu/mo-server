@@ -123,11 +123,12 @@
             <version>4.2.0.Final</version>  
         </dependency>  
       
-     <!--  	<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.10</version>
-		</dependency> -->
+    	<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+		</dependency>
+            
 		
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

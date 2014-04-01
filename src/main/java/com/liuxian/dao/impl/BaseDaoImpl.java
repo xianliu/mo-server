@@ -3,6 +3,8 @@ package com.liuxian.dao.impl;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -48,7 +50,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	@Override
 	public int removeByHQL(String hql, Object... params) {
-		Query query = getSession().createQuery("DELETE FROM " + clazz.getSimpleName() + " c" + hql);
+		Query query = getSession().createQuery("DELETE FROM " + clazz.getSimpleName() + " c " + hql);
 		for (int i = 0; i < params.length; i++) {
 			query.setParameter(i + 1, params[i]);
 		}
@@ -66,10 +68,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	@Override
-	public List<T> findByHQL(String hql, Object... params) {
-		Query query = getSession().createQuery("FROM " + clazz.getSimpleName() + hql);
-		for (int i = 0; i < params.length; i++) {
-			query.setParameter(i + 1, params[i]);
+	public List<T> findByHQL(String hql, Map<String, Object> map) {
+		Query query = getSession().createQuery("SELECT c from " + clazz.getSimpleName() + " c " + hql);
+		Set<String> keySet = map.keySet();  
+	    for (String string : keySet) {  
+			query.setParameter(string, map.get(string));
 		}
 		return query.list();
 	}

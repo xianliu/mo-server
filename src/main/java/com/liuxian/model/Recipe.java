@@ -25,6 +25,26 @@ public class Recipe {
 	@Column(name = "shop_id")
 	private int shopId;
 	
+	private String location;
+	
+	private int status;
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public int getId() {
 		return id;
 	}

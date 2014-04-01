@@ -1,6 +1,7 @@
 package com.liuxian.dao;
 
 import java.util.List;
+import java.util.Map;
 import java.io.Serializable;
 
 import org.hibernate.Session;
@@ -20,7 +21,7 @@ public interface BaseDao<T> {
 	
 	public List<T> findAll();
 	
-	public List<T> findByHQL(String hql, Object... params);
-	
 	Session getSession();
+
+	List<T> findByHQL(String hql, Map<String, Object> map);
 }
