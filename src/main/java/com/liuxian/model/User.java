@@ -1,24 +1,47 @@
 package com.liuxian.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
-@SuppressWarnings("serial")
 @Entity
-@Table(name = "tuser")
-public class User implements java.io.Serializable
-{
-	private String id;
-	private Date regtime;
+@Table(name = "user")
+public class User implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(length = 20)
 	private String username;
+	
+	@Column(length = 20)
 	private String password;
-	@Column(name="password",nullable=false,length=20)
+	
+	private Date create_time;
+	
+	private String role;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -26,46 +49,21 @@ public class User implements java.io.Serializable
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	private String code;
-	@Transient
-	public String getCode() {
-		return code;
+
+	public Date getCreate_time() {
+		return create_time;
+	}
+
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public User()
-	{
-	}
-	public User(String id, Date regtime, String username,String password) {
-		super();
-		this.id = id;
-		this.regtime = regtime;
-		this.username = username;
-		this.password = password;
-	}
-	@Id
-	@Column(name = "id", nullable = false, length = 36)
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "regtime", length = 7)
-	public Date getRegtime() {
-		return regtime;
-	}
-	public void setRegtime(Date regtime) {
-		this.regtime = regtime;
-	}
-	@Column(name = "username", unique = false, nullable = false, length = 100)
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 }

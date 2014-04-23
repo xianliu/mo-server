@@ -22,7 +22,6 @@ public class JsonP {
 			out = response.getWriter();
 			out.write(cb + "(");
 			out.write(gson.toJson(t));
-			System.out.println(gson.toJson(t));
 			out.write(");");
 		} catch (IOException e) {
 			e.printStackTrace();

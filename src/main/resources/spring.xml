@@ -8,9 +8,8 @@
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	">
 	
-	<bean id="gson" class="com.google.gson.Gson" >
-	</bean>
-
+	<bean id="gson" class="com.google.gson.Gson" ></bean>
+	
 	<context:property-placeholder location="classpath:database.properties" />
 	<context:component-scan base-package="com.liuxian.util, com.liuxian.action,com.liuxian.dao.impl,com.liuxian.inject.service" />
 </beans>
