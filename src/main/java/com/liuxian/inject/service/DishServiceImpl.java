@@ -16,8 +16,7 @@ public class DishServiceImpl
 	@Resource(name = "dishDao")
 	private DishDao dishDao;
 	
-	public void add(Dish dish)
-	{
+	public void add(Dish dish) {
 		dishDao.save(dish);
 	}
 	

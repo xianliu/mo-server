@@ -20,7 +20,12 @@
 	</nav>
 	
 	<div class="container">
-		系统管理后台
+		<a class="btn btn-default" href="news!list.action">新闻管理</a>
+		<a class="btn btn-default" href="shop!list.action">店铺管理</a>
+		<a class="btn btn-default" href="recipe!list.action">订单管理</a>
+		<% if(request.isUserInRole("admin")) { %>
+		<a class="btn btn-default" href="user!list.action">用户管理</a>
+		<% } %>
 	</div>
 </body>
 </html>

@@ -109,7 +109,6 @@ public class ShopAction
 		try {
 			out = response.getWriter();
 			out.write(gson.toJson(shop));
-			System.out.println(gson.toJson(shop));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

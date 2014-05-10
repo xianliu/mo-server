@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import com.google.gson.Gson;
 import com.liuxian.inject.service.DishServiceImpl;
 import com.liuxian.model.Dish;
-import com.liuxian.model.Group;
 import com.opensymphony.xwork2.ActionContext;
 
 @Controller("dishAction")

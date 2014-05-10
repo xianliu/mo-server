@@ -49,5 +49,11 @@
 		</action>
 	</package>
 	
+	<package name="user" extends="struts-default">
+		<action name="user" class="userAction" >
+			<result name="userList" >/userList.jsp</result>
+			<result name="refreshList" type="redirect">/user!list.action</result>
+		</action>
+	</package>
 	
 </struts>

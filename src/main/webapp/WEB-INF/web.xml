@@ -66,12 +66,32 @@
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>normal</role-name>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>admin</web-resource-name>
+			<url-pattern>/user!list.action</url-pattern>
+			<url-pattern>/user!add.action</url-pattern>
+			<url-pattern>/user!remove.action</url-pattern>
+			<url-pattern>/user!update.action</url-pattern>
+			<url-pattern>/user!get.action</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
 	
 	<security-role>
 		<role-name>normal</role-name>
 	</security-role>
+	
+	<security-role>
+		<role-name>admin</role-name>
+	</security-role>
+	
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>mobile</realm-name>
