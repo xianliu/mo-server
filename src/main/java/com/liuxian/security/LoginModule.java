@@ -9,8 +9,6 @@ import javax.security.auth.login.LoginException;
 
 import org.jboss.security.SimpleGroup;
 import org.jboss.security.SimplePrincipal;
-import org.jboss.security.auth.spi.Util;
-
 import org.jboss.security.auth.spi.UsernamePasswordLoginModule;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,11 +19,7 @@ import com.liuxian.model.User;
 public class LoginModule extends UsernamePasswordLoginModule {
 	private UserDao userDao;
 
-	private static final String HASH_ALGO = "MD5";
-
 	private String username;
-	private char[] credential;
-	private String password;
 	private ClassPathXmlApplicationContext context;
 	private User user;
 
@@ -40,9 +34,6 @@ public class LoginModule extends UsernamePasswordLoginModule {
 	@Override
 	protected String getUsersPassword() throws LoginException {
 		username = super.getUsername();
-		credential = (char[]) super.getCredentials();
-		password = new String(credential);
-
 		BeanFactory factory = getBeanFacroty();
 		userDao = (UserDao) factory.getBean("userDao");
 		Map<String, Object> map = new HashMap<String, Object>();
