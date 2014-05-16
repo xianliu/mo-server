@@ -1,5 +1,8 @@
 package com.liuxian.rest.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -29,6 +32,29 @@ public class RecipeService {
 			HttpServletResponse response) {
 		List<Recipe> recipeList = recipeDao.findAll(); 
 		jsonP.buildJsonp(recipeList, cb, response);
+	}
+	
+	@RequestMapping(value = "/api/saveRecipe.json", method = RequestMethod.GET)
+	public void saveRecipe(
+			@RequestParam(required = false, value = "callback", defaultValue = "callback") String cb,
+			@RequestParam String access_token,
+			@RequestParam String user_id,
+			@RequestParam String total_price,
+			@RequestParam String location,
+			@RequestParam String detail,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		Recipe recipe = new Recipe();
+		recipe.setUserId(Integer.parseInt(user_id));
+		
+		location = URLDecoder.decode(location, "utf-8");
+		
+		recipe.setLocation(location);
+		recipe.setPrice(total_price);
+		recipe.setDetail(detail);
+		recipe.setCreateDate(new Date());
+		
+		recipeDao.save(recipe);
+		jsonP.buildJsonp(recipe, cb, response);
 	}
 
 }

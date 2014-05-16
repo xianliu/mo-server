@@ -48,7 +48,10 @@ public class UserService {
 		List<User> userList = userDao.findByHQL("where c.username=:username", map);
 		
 		if(checkPassword(userList, hashedPassword)) {
-			jsonP.buildJsonp(accessToken, cb, response);
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("accessToken", accessToken);
+			resultMap.put("userId", userList.get(0).getId());
+			jsonP.buildJsonp(resultMap, cb, response);
 		} else {
 			ErrorObject error = new ErrorObject();
 			error.setCode(503);

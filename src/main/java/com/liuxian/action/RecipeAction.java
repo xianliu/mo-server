@@ -50,7 +50,6 @@ public class RecipeAction {
 		try {
 			out = response.getWriter();
 			out.write(gson.toJson(recipe));
-			System.out.println(gson.toJson(recipe));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

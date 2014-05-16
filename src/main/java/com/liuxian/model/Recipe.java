@@ -1,11 +1,15 @@
 package com.liuxian.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="recipe")
@@ -17,18 +21,35 @@ public class Recipe {
 	@Column(name = "total_price")
 	private String price;
 	
-	private boolean enabled;
-
 	@Column(name = "user_id")
 	private int userId;
 	
-	@Column(name = "shop_id")
-	private int shopId;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_time")
+	private Date createDate;
 	
 	private String location;
 	
+	private String detail;
+	
 	private int status;
 	
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
 	public int getStatus() {
 		return status;
 	}
@@ -61,14 +82,6 @@ public class Recipe {
 		this.price = price;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
 	public int getUserId() {
 		return userId;
 	}
@@ -77,16 +90,4 @@ public class Recipe {
 		this.userId = userId;
 	}
 
-	public int getShopId() {
-		return shopId;
-	}
-
-	public void setShopId(int shopId) {
-		this.shopId = shopId;
-	}
-	
-	
-	
-	
-	
 }
