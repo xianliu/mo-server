@@ -64,5 +64,15 @@ public class ShopService {
 		List<Dish> dishList = dishDao.findByHQL("where c.group_id=:groupId", map); 
 		jsonP.buildJsonp(dishList, cb, response);
 	}
+	
+	@RequestMapping(value = "/api/dishes.json", method = RequestMethod.GET)
+	public void getDishListByIds(
+			@RequestParam(required = false, value = "callback", defaultValue = "callback") String cb,
+			@RequestParam(value = "ids") String ids,
+			HttpServletResponse response) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Dish> dishList = dishDao.findByHQL("where c.id in (" + ids + ")", map); 
+		jsonP.buildJsonp(dishList, cb, response);
+	}
 
 }

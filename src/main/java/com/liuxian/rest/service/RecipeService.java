@@ -3,7 +3,9 @@ package com.liuxian.rest.service;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -29,8 +31,12 @@ public class RecipeService {
 	@RequestMapping(value = "/api/recipeList.json", method = RequestMethod.GET)
 	public void getRecipeList(
 			@RequestParam(required = false, value = "callback", defaultValue = "callback") String cb,
+			@RequestParam String userId,
 			HttpServletResponse response) {
-		List<Recipe> recipeList = recipeDao.findAll(); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", Integer.parseInt(userId));
+		List<Recipe> recipeList = recipeDao.findByHQL("where c.userId=:userId", map); 
 		jsonP.buildJsonp(recipeList, cb, response);
 	}
 	
