@@ -13,7 +13,7 @@
 	<nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="news!list.action">新闻公告</a>
+			<a class="navbar-brand" href="#">点餐平台</a>
 			<a class="navbar-brand" href="#">点餐</a>
 		</div>
 	</div>

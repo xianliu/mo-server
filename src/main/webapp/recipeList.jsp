@@ -32,16 +32,25 @@
 	<div class="container">
 		<table class="table table-hover table-striped">
 	    	<thead>
-	    		<th>#</th>
-	    		<th>商店</th>
-	    		<th>总价</th>
+	    		<th>订单号</th>
+	    		<th>价格</th>
+	    		<th>提交时间</th>
+	    		<th>地址</th>
+	    		<th>状态</th>
 	    	</thead>
 	    	<tbody>
 	    		<c:forEach items="${recipeList}" varStatus="status" var="item" >
 		    		<tr>
-		    			<td>${status.index + 1}</td>
-		    			<td>${item.shopId}</td>
-		    			<td>${item.price}</td>
+		    			<td>${item.id}</td>
+		    			<td>￥${item.price}</td>
+		    			<td>${item.createDate}</td>
+		    			<td>${item.location}</td>
+		    			<td>
+		    				<c:if test="${item.status eq 0}">未付款</c:if>
+		    				<c:if test="${item.status eq 1}">已付款</c:if>  
+		    				<c:if test="${item.status eq 2}">已确认下单</c:if>
+		    				<span class="glyphicon glyphicon-edit"></span>
+		    			</td>
 		    		</tr>
 	    		</c:forEach>
 	    	</tbody>	
